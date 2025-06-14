@@ -19,3 +19,9 @@ resource "azurerm_static_web_app" "primary_static_web_app" {
   sku_tier            = "Free"
   sku_size            = "Free"
 }
+
+resource "azurerm_static_web_app_custom_domain" "custom_domain" {
+  static_web_app_id = azurerm_static_web_app.primary_static_web_app.id
+  domain_name       = "streetcrocket.com"
+  validation_type   = "cname-delegation"
+}
