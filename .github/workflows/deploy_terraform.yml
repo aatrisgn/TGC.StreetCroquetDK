@@ -69,12 +69,12 @@ jobs:
       run: terraform plan -input=false -var-file="envs/vars.prd.tfvars" -out=tfplan
 
     - name: Terraform Apply
-      if: github.event.inputs.tfApply == 'true' && github.event_name != 'push' && github.event_name != 'pull_request'
+      if: (github.ref == 'refs/heads/main'|| github.event.inputs.tfApply == 'true') && github.event_name != 'push' && github.event_name != 'pull_request'
       run: terraform apply -auto-approve tfplan
     
     - name: Set output
       id: terraform_outputs
-      if: github.event.inputs.tfApply == 'true' && github.event_name != 'push' && github.event_name != 'pull_request'
+      if: (github.ref == 'refs/heads/main'|| github.event.inputs.tfApply == 'true')  && github.event_name != 'push' && github.event_name != 'pull_request'
       run: echo "static_web_app_resource_name_output="$(terraform output static_web_app_resource_name)"" >> $GITHUB_OUTPUT
   
   deployment_job_prd:
@@ -82,7 +82,7 @@ jobs:
     environment: prd
     needs: deploy_infrastructure
     name: Deploy PRD application code
-    if: github.event.inputs.tfApply == 'true' && github.event_name != 'push' && github.event_name != 'pull_request'
+    if: (github.ref == 'refs/heads/main'|| github.event.inputs.tfApply == 'true') && github.event_name != 'push' && github.event_name != 'pull_request'
     
     steps:
     - uses: actions/checkout@v3
