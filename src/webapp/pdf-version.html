@@ -3,38 +3,208 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Discover Street Croquet - The Urban Gentleman's Sport. Learn about this modern twist on traditional croquet, combining strategy with urban terrain challenges.">
-    <meta name="keywords" content="Street Croquet, urban sports, gentleman's sport, croquet rules, urban croquet, ISCC, International Street Croquet Committee">
-    <meta name="author" content="The Gentleman's Club (TGC)">
-    <meta name="robots" content="index, follow">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://streetcroquet.com/">
-    <meta property="og:title" content="Street Croquet - The Urban Gentleman's Sport">
-    <meta property="og:description" content="Discover Street Croquet - The Urban Gentleman's Sport. Learn about this modern twist on traditional croquet, combining strategy with urban terrain challenges.">
-    <meta property="og:image" content="images/og-image.jpg">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://streetcroquet.com/">
-    <meta property="twitter:title" content="Street Croquet - The Urban Gentleman's Sport">
-    <meta property="twitter:description" content="Discover Street Croquet - The Urban Gentleman's Sport. Learn about this modern twist on traditional croquet, combining strategy with urban terrain challenges.">
-    <meta property="twitter:image" content="images/og-image.jpg">
-
-    <title>Street Croquet - The Urban Gentleman's Sport</title>
-    <link rel="icon" type="image/png" href="images/favicon.png">
-    <link rel="stylesheet" href="assets/styles.css">
+    <title>Official Street Croquet Rules - The Urban Gentleman's Sport</title>
     <style>
-        
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Serif+Pro:wght@400;600&display=swap');
+
+        :root {
+            --deep-green: #1B4D3E;
+            --deep-blue: #1B3B6F;
+            --yellow: #FFD700;
+            --orange: #FFA500;
+            --red: #DC143C;
+            --white: #FFFFFF;
+            --light-gray: #F5F5F5;
+        }
+
+        body {
+            font-family: 'Source Serif Pro', serif;
+            line-height: 1.6;
+            color: var(--deep-green);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background: var(--white);
+            border: 2px solid var(--yellow);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            padding: 20px 0;
+            background: var(--deep-green);
+            color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header::before, .header::after {
+            content: "🌿";
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            color: var(--yellow);
+        }
+
+        .header::before {
+            left: 20%;
+        }
+
+        .header::after {
+            right: 20%;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            color: var(--yellow);
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--deep-blue);
+            border-bottom: 2px solid var(--orange);
+            padding-bottom: 10px;
+            margin-top: 40px;
+            position: relative;
+        }
+
+        h2::after {
+            content: "⚜️";
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            color: var(--yellow);
+        }
+
+        h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--deep-blue);
+            margin-top: 30px;
+            border-left: 4px solid var(--orange);
+            padding-left: 15px;
+        }
+
+        .rules-section {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid var(--yellow);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .committee-member {
+            background: var(--light-gray);
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid var(--red);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .committee-member::before {
+            content: "👑";
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            font-size: 24px;
+            color: var(--yellow);
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+        }
+
+        ul li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--orange);
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid var(--yellow);
+            font-size: 0.9em;
+            color: var(--deep-green);
+            background: var(--light-gray);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .watermark {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            font-size: 120px;
+            color: rgba(27, 77, 62, 0.03);
+            pointer-events: none;
+            z-index: -1;
+            font-family: 'Playfair Display', serif;
+            white-space: nowrap;
+        }
+
+        .official-seal {
+            text-align: center;
+            margin: 20px 0;
+            color: var(--yellow);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .official-seal::before {
+            content: "⚜️";
+            font-size: 24px;
+            margin-right: 10px;
+        }
+
+        .official-seal::after {
+            content: "⚜️";
+            font-size: 24px;
+            margin-left: 10px;
+        }
+
+        .page-number {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-family: 'Playfair Display', serif;
+            color: var(--deep-green);
+            font-size: 0.8em;
+        }
     </style>
 </head>
 <body>
-    <div class="background-pattern"></div>
-    <header>
+    <div class="watermark">OFFICIAL DOCUMENT</div>
+    <div class="page-number">Page 1 of 1</div>
+    
+    <div class="header">
         <h1>Street Croquet</h1>
-        <p>The Urban Gentleman's Sport</p>
-    </header>
+        <p class="official-seal">The Urban Gentleman's Sport</p>
+    </div>
 
     <div class="container">
         <section id="welcome">
@@ -46,7 +216,7 @@
         <section id="rules">
             <h2>Official Rules of Street Croquet</h2>
             
-            <div class="rules-intro">
+            <div class="rules-section">
                 <p>It's important to get moving and enjoy some fresh air. What better way to do that than with a competitive game of croquet to prove who's the best? For this purpose, there's no better sport than Street Croquet!</p>
             </div>
 
@@ -121,20 +291,6 @@
             </div>
         </section>
 
-        <section id="download">
-            <h2>Download Official Rules</h2>
-            <div class="download-section">
-                <p>Get your official copy of the Street Croquet rules in a beautifully formatted PDF document. Perfect for printing and keeping in your gentleman's library.</p>
-                <div class="download-button">
-                    <a href="pdf-version.html" download="Street_Croquet_Official_Rules.pdf" class="download-link">
-                        <span class="download-icon">📄</span>
-                        Download Official Rules
-                    </a>
-                </div>
-                <p class="download-note">Note: For best results, use your browser's "Print to PDF" function when viewing the document by pressing CTRL+P.</p>
-            </div>
-        </section>
-
         <section id="committee">
             <h2>The International Street Croquet Committee</h2>
             <p>The ISCC (International Street Croquet Committee) is the governing body of Street Croquet, established in 2023 by a group of disgruntled traditional croquet players who found the sport "too predictable."</p>
@@ -163,19 +319,11 @@
                 <p>Former traffic controller who brought order to chaos by implementing the "Montgomery Method" of urban course design.</p>
             </div>
         </section>
-
-        <section id="contact">
-            <h2>Contact Us</h2>
-            <div class="contact-message">
-                <p>We do not accept any inquiries about the great sport of street croquet at the moment. There cannot be any reason for you to contact us at the moment, since the sport is perfect.</p>
-                <p class="contact-note">Should you, against all odds, believe you have something of value to contribute to our perfect sport, please be aware that your message will be ceremoniously ignored by our team of highly trained non-responders.</p>
-            </div>
-        </section>
     </div>
-    <footer>
-        <div class="container">
-            <p>© 2025 The Gentleman's Club (TGC). All rights reserved. Street Croquet™ is an official TGC product.</p>
-        </div>
-    </footer>
+
+    <div class="footer">
+        <p>© 2025 The Gentleman's Club (TGC). All rights reserved. Street Croquet™ is an official TGC product.</p>
+        <p>This document is the official and authoritative source for Street Croquet rules and regulations.</p>
+    </div>
 </body>
 </html> 
