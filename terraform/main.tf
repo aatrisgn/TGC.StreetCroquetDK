@@ -31,16 +31,16 @@ resource "azurerm_static_web_app_custom_domain" "custom_domain" {
   validation_type   = "dns-txt-token"
 }
 
-# resource "azurerm_dns_txt_record" "example" {
-#   count               = azurerm_static_web_app_custom_domain.custom_domain.validation_token == null || azurerm_static_web_app_custom_domain.custom_domain.validation_token == "" ? 0 : 1
-#   name                = "_dnsauth"
-#   zone_name           = azurerm_dns_zone.dns_zone.name
-#   resource_group_name = data.azurerm_resource_group.predefined_resource_group.name
-#   ttl                 = 300
-#   record {
-#     value = azurerm_static_web_app_custom_domain.custom_domain.validation_token
-#   }
-# }
+resource "azurerm_dns_txt_record" "example" {
+  count               = azurerm_static_web_app_custom_domain.custom_domain.validation_token == null || azurerm_static_web_app_custom_domain.custom_domain.validation_token == "" ? 0 : 1
+  name                = "_dnsauth"
+  zone_name           = azurerm_dns_zone.dns_zone.name
+  resource_group_name = data.azurerm_resource_group.predefined_resource_group.name
+  ttl                 = 300
+  record {
+    value = azurerm_static_web_app_custom_domain.custom_domain.validation_token
+  }
+}
 
 resource "azurerm_dns_a_record" "example" {
   name                = "@"
