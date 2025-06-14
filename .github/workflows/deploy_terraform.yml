@@ -82,6 +82,7 @@ jobs:
     environment: prd
     needs: deploy_infrastructure
     name: Deploy PRD application code
+    if: github.event.inputs.tfApply == 'true' && github.event_name != 'push' && github.event_name != 'pull_request'
     
     steps:
     - uses: actions/checkout@v3
