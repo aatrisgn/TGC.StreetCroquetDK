@@ -103,8 +103,8 @@ jobs:
       with:
         azure_static_web_apps_api_token: ${{steps.fetchSWAToken.outputs.deploymenttoken}}
         action: "upload"
-        app_location: ./src/webapp
+        app_location: ./src/webapp/html
         api_location: ""
         skip_app_build: true
         skip_api_build: true
-        config_file_location: ./src/webapp
+        config_file_location: ./src/webapp/html
