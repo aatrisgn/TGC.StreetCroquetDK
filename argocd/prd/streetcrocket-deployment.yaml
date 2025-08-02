@@ -1,20 +1,20 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: dev-streetcroquet-app
-  namespace: dev-streetcroquet
+  name: tst-streetcroquet-app
+  namespace: tst-streetcroquet
   labels:
-    app: dev-streetcroquet-app
+    app: tst-streetcroquet-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: dev-streetcroquet-app
+      app: tst-streetcroquet-app
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: dev-streetcroquet-app
+        app: tst-streetcroquet-app
     spec:
       containers:
         - name: aks-streetcroquet

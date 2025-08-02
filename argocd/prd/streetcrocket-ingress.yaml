@@ -1,8 +1,8 @@
 kind: Ingress
 apiVersion: networking.k8s.io/v1
 metadata:
-  name: dev-streetcroquet-ingress
-  namespace: dev-streetcroquet
+  name: tst-streetcroquet-ingress
+  namespace: tst-streetcroquet
   annotations:
     cert-manager.io/issuer: letsencrypt-staging
     nginx.ingress.kubernetes.io/ssl-redirect: 'false'
@@ -10,16 +10,16 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - dev.streetcrocket.com
-      secretName: dev-streetcrocket-tls
+        - tst.streetcrocket.com
+      secretName: tst-streetcrocket-tls
   rules:
-    - host: dev.streetcrocket.com
+    - host: tst.streetcrocket.com
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: dev-streetcroquet-svc
+                name: tst-streetcroquet-svc
                 port:
                   number: 80
