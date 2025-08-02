@@ -9,7 +9,7 @@ spec:
     email: asger.thyregod@gmail.com
     profile: tlsserver
     privateKeySecretRef:
-      name: tst-streetcroquet-key
+      name: letsencrypt-staging
     solvers:
       - http01:
           ingres:
