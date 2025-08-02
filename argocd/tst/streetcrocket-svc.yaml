@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: tst-streetcroquet-svc
+  namespace: tst-streetcroquet
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  selector:
+    app: tst-streetcroquet-app
