@@ -1,5 +1,5 @@
 # Use the official Nginx image from Docker Hub
-FROM --platform=linux/arm64 arm64v8/nginx:latest
+FROM arm64v8/nginx:latest
 
 # Remove the default nginx website
 RUN rm -rf /usr/share/nginx/html/*
