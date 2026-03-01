@@ -1,5 +1,5 @@
 # Use the official Nginx image from Docker Hub
-FROM --platform=linux/arm64 arm64v8/nginx:latest
+FROM nginx:latest
 
 # Copy your static HTML files into the container
 COPY ./html /usr/share/nginx/html
