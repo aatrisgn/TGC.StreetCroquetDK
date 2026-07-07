@@ -46,9 +46,6 @@ jobs:
       shell: pwsh
       run: ./.github/scripts/generate_version.ps1
 
-    - name: Login to ACR
-      run: az acr login --name tgclzdevacr
-
     - name: Build and publish webapp to ACR
       run: |
         TAGS="--tag ${{ env.sccr_registry }}/${{ env.image_name }}:${{ steps.version.outputs.version }}"
