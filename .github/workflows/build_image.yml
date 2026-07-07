@@ -39,7 +39,7 @@ jobs:
       uses: docker/setup-buildx-action@v3
 
     - name: Login to ACR
-      run: docker login ${{ env.sccr_registry }} -u nologin --password-stdin <<< "${{ secrets.ASGERTHYREGODDK_PRD_DEPLOYMENT_SECRET_ACCESS_KEY }}"
+      run: docker login ${{ env.sccr_registry }} -u nologin --password-stdin <<< "${{ secrets.STREETCROQUETDK_PRD_DEPLOYMENT_SECRET_ACCESS_KEY }}"
 
     - name: Generate version
       id: version
