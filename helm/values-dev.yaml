@@ -1,0 +1,6 @@
+env: dev
+namespace: streetcrocketdev
+
+httproute:
+  hostname: dev.streetcrocket.com
+  sectionName: dev-streetcrocket-com-https

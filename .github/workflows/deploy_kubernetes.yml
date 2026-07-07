@@ -1,0 +1,78 @@
+name: Generate Kubernetes manifests
+
+on:
+  push:
+    paths:
+      - 'helm/**'
+      - 'terraform/deployment/**'
+      - '.github/workflows/deploy_kubernetes.yml'
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to generate manifests for'
+        required: true
+        type: choice
+        options:
+          - dev
+          - prd
+      applyTF:
+        description: 'Apply Terraform?'
+        required: true
+        type: boolean
+      version:
+        description: 'Image tag to deploy (defaults to latest tag in ACR)'
+        required: false
+        default: 'latest'
+        type: string
+
+permissions:
+  id-token: write
+  contents: write
+
+jobs:
+  dev-deployment:
+    if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'dev')
+    uses: aatrisgn/TGC.Templates/.github/workflows/wfc_deploy_k8_manifests.yml@main
+    with:
+      working_directory: "TGC.StreetCroquetDK/terraform/deployment"
+      applyTF: ${{ github.event.inputs.applyTF }}
+      state_key: "streetcroquetdk.deployment.dev"
+      application_repo: "TGC.StreetCroquetDK"
+      image_name: "tgc-scdk-app"
+      container_registry: "crn-shared-prd-scr-lz-fr-par"
+      app_version: ${{ github.event.inputs.version || 'latest' }}
+      helm_output_dir: "./deployment/dev"
+      helm_input_values_file: "./helm/values-dev.yaml"
+      var_file_path: "envs/vars.dev.tfvars"
+    secrets:
+      deployment_access_key: "${{ secrets.STREETCROQUETDK_DEV_DEPLOYMENT_ACCESS_KEY }}"
+      deployment_secret_access_key: "${{ secrets.STREETCROQUETDK_DEV_DEPLOYMENT_SECRET_ACCESS_KEY }}"
+      state_access_key: "${{ secrets.STREETCROQUETDK_DEV_STATE_ACCESS_KEY }}"
+      state_secret_access_key: "${{ secrets.STREETCROQUETDK_DEV_STATE_SECRET_ACCESS_KEY }}"
+      state_bucket_name: "${{ secrets.STREETCROQUETDK_DEV_STATE_BUCKET_NAME }}"
+      organization_id: "${{ secrets.STREETCROQUETDK_DEV_ORGANIZATION_ID }}"
+      github_argo_token: "${{ secrets.TESTING }}"
+
+
+  prd-deployment:
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && github.event.inputs.environment == 'prd'
+    uses: aatrisgn/TGC.Templates/.github/workflows/wfc_deploy_k8_manifests.yml@main
+    with:
+      working_directory: "TGC.StreetCroquetDK/terraform/deployment"
+      applyTF: ${{ github.event.inputs.applyTF }}
+      state_key: "streetcroquetdk.deployment.prd"
+      application_repo: "TGC.StreetCroquetDK"
+      image_name: "tgc-scdk-app"
+      container_registry: "crn-shared-prd-scr-lz-fr-par"
+      app_version: ${{ github.event.inputs.version || 'latest' }}
+      helm_output_dir: "./deployment/prd"
+      helm_input_values_file: "./helm/values-prd.yaml"
+      var_file_path: "envs/vars.prd.tfvars"
+    secrets:
+      deployment_access_key: "${{ secrets.STREETCROQUETDK_PRD_DEPLOYMENT_ACCESS_KEY }}"
+      deployment_secret_access_key: "${{ secrets.STREETCROQUETDK_PRD_DEPLOYMENT_SECRET_ACCESS_KEY }}"
+      state_access_key: "${{ secrets.STREETCROQUETDK_PRD_STATE_ACCESS_KEY }}"
+      state_secret_access_key: "${{ secrets.STREETCROQUETDK_PRD_STATE_SECRET_ACCESS_KEY }}"
+      state_bucket_name: "${{ secrets.STREETCROQUETDK_PRD_STATE_BUCKET_NAME }}"
+      organization_id: "${{ secrets.STREETCROQUETDK_PRD_ORGANIZATION_ID }}"
+      github_argo_token: "${{ secrets.TESTING }}"

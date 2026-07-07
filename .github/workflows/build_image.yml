@@ -3,8 +3,14 @@ name: Build and publish images
 on:
   push:
     branches: ["main"]
+    paths:
+      - 'src/**'
+      - '.github/workflows/build_image.yml'
   pull_request:
     branches: ["main"]
+    paths:
+      - 'src/**'
+      - '.github/workflows/build_image.yml'
   workflow_dispatch:
 
 permissions:
@@ -16,18 +22,15 @@ jobs:
   deploy_infrastructure:
     name: Deploy webapp to dev ACR
     runs-on: ubuntu-latest
-    environment: dev
-
-    defaults:
-      run:
-        working-directory: ./src/webapp
-    
     env:
-      image_name: streetcroquetdk
-      acr_registry: tgclzdevacr.azurecr.io
-
+      image_name: tgc-streetcrocketcom-app
+      app_path: src/webapp
+      sccr_registry: rg.fr-par.scw.cloud/crn-shared-prd-scr-lz-fr-par
+    
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
 
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v3
@@ -35,20 +38,33 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
 
-    - name: 'Az CLI login'
-      uses: azure/login@v2
-      with:
-          client-id: ${{ secrets.STREETCROQUETDK_DEV_CLIENT_ID }}
-          tenant-id: ${{ secrets.STREETCROQUETDK_DEV_TENANT_ID }}
-          subscription-id: ${{ secrets.STREETCROQUETDK_DEV_SUBSCRIPTION_ID }}
+    - name: Login to ACR
+      run: docker login ${{ env.sccr_registry }} -u nologin --password-stdin <<< "${{ secrets.ASGERTHYREGODDK_PRD_DEPLOYMENT_SECRET_ACCESS_KEY }}"
+
+    - name: Generate version
+      id: version
+      shell: pwsh
+      run: ./.github/scripts/generate_version.ps1
 
     - name: Login to ACR
       run: az acr login --name tgclzdevacr
 
     - name: Build and publish webapp to ACR
       run: |
+        TAGS="--tag ${{ env.sccr_registry }}/${{ env.image_name }}:${{ steps.version.outputs.version }}"
+        if [ "${{ github.ref }}" = "refs/heads/main" ]; then
+          TAGS="$TAGS --tag ${{ env.sccr_registry }}/${{ env.image_name }}:latest"
+        fi
         docker buildx build . \
           --platform linux/amd64,linux/arm64 \
-          --tag $acr_registry/$image_name:${{ github.sha }} \
-          --tag $acr_registry/$image_name:latest \
+          $TAGS \
           --push
+      working-directory: ${{ env.app_path }}
+    
+    - name: Tag commit
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git tag ${{ steps.version.outputs.version }}
+        git push origin ${{ steps.version.outputs.version }}
