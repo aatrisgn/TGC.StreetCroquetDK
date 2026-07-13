@@ -51,7 +51,7 @@ jobs:
       state_secret_access_key: "${{ secrets.STREETCROQUETDK_DEV_STATE_SECRET_ACCESS_KEY }}"
       state_bucket_name: "${{ secrets.STREETCROQUETDK_DEV_STATE_BUCKET_NAME }}"
       organization_id: "${{ secrets.STREETCROQUETDK_DEV_ORGANIZATION_ID }}"
-      github_argo_token: "${{ secrets.TESTING }}"
+      github_argo_token: "${{ secrets.ARGOCD_REPO_WRITE_TOKEN }}"
 
 
   prd-deployment:
@@ -75,4 +75,4 @@ jobs:
       state_secret_access_key: "${{ secrets.STREETCROQUETDK_PRD_STATE_SECRET_ACCESS_KEY }}"
       state_bucket_name: "${{ secrets.STREETCROQUETDK_PRD_STATE_BUCKET_NAME }}"
       organization_id: "${{ secrets.STREETCROQUETDK_PRD_ORGANIZATION_ID }}"
-      github_argo_token: "${{ secrets.TESTING }}"
+      github_argo_token: "${{ secrets.ARGOCD_REPO_WRITE_TOKEN }}"
