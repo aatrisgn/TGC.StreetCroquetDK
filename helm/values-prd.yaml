@@ -2,5 +2,5 @@ env: prd
 namespace: streetcrocketprd
 
 httproute:
-  hostname: streetcroquet.com
+  hostname: streetcrocket.com
   sectionName: prd-streetcrocket-com-https
