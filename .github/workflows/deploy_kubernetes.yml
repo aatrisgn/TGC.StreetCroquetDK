@@ -34,7 +34,7 @@ jobs:
     if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'dev')
     uses: aatrisgn/TGC.Templates/.github/workflows/wfc_deploy_k8_manifests.yml@main
     with:
-      working_directory: "terraform/deployment"
+      working_directory: "TGC.StreetCroquetDK/terraform/deployment"
       applyTF: ${{ github.event.inputs.applyTF }}
       state_key: "streetcroquetdk.deployment.dev"
       application_repo: "TGC.StreetCroquetDK"
@@ -58,7 +58,7 @@ jobs:
     if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && github.event.inputs.environment == 'prd'
     uses: aatrisgn/TGC.Templates/.github/workflows/wfc_deploy_k8_manifests.yml@main
     with:
-      working_directory: "terraform/deployment"
+      working_directory: "TGC.StreetCroquetDK/terraform/deployment"
       applyTF: ${{ github.event.inputs.applyTF }}
       state_key: "streetcroquetdk.deployment.prd"
       application_repo: "TGC.StreetCroquetDK"
