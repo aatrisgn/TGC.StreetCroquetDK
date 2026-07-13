@@ -38,7 +38,7 @@ jobs:
       applyTF: ${{ github.event.inputs.applyTF }}
       state_key: "streetcroquetdk.deployment.dev"
       application_repo: "TGC.StreetCroquetDK"
-      image_name: "tgc-scdk-app"
+      image_name: "tgc-streetcrocketcom-app"
       container_registry: "crn-shared-prd-scr-lz-fr-par"
       app_version: ${{ github.event.inputs.version || 'latest' }}
       helm_output_dir: "./deployment/dev"
@@ -62,7 +62,7 @@ jobs:
       applyTF: ${{ github.event.inputs.applyTF }}
       state_key: "streetcroquetdk.deployment.prd"
       application_repo: "TGC.StreetCroquetDK"
-      image_name: "tgc-scdk-app"
+      image_name: "tgc-streetcrocketcom-app"
       container_registry: "crn-shared-prd-scr-lz-fr-par"
       app_version: ${{ github.event.inputs.version || 'latest' }}
       helm_output_dir: "./deployment/prd"
