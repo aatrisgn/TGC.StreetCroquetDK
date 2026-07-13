@@ -45,12 +45,12 @@ jobs:
       helm_input_values_file: "./helm/values-dev.yaml"
       var_file_path: "envs/vars.dev.tfvars"
     secrets:
-      deployment_access_key: "${{ secrets.STREETCROQUETDK_DEV_DEPLOYMENT_ACCESS_KEY }}"
-      deployment_secret_access_key: "${{ secrets.STREETCROQUETDK_DEV_DEPLOYMENT_SECRET_ACCESS_KEY }}"
-      state_access_key: "${{ secrets.STREETCROQUETDK_DEV_STATE_ACCESS_KEY }}"
-      state_secret_access_key: "${{ secrets.STREETCROQUETDK_DEV_STATE_SECRET_ACCESS_KEY }}"
-      state_bucket_name: "${{ secrets.STREETCROQUETDK_DEV_STATE_BUCKET_NAME }}"
-      organization_id: "${{ secrets.STREETCROQUETDK_DEV_ORGANIZATION_ID }}"
+      deployment_access_key: "${{ secrets.STREETCROQUETDK_PRD_DEPLOYMENT_ACCESS_KEY }}"
+      deployment_secret_access_key: "${{ secrets.STREETCROQUETDK_PRD_DEPLOYMENT_SECRET_ACCESS_KEY }}"
+      state_access_key: "${{ secrets.STREETCROQUETDK_PRD_STATE_ACCESS_KEY }}"
+      state_secret_access_key: "${{ secrets.STREETCROQUETDK_PRD_STATE_SECRET_ACCESS_KEY }}"
+      state_bucket_name: "${{ secrets.STREETCROQUETDK_PRD_STATE_BUCKET_NAME }}"
+      organization_id: "${{ secrets.STREETCROQUETDK_PRD_ORGANIZATION_ID }}"
       github_argo_token: "${{ secrets.ARGOCD_REPO_WRITE_TOKEN }}"
 
 
