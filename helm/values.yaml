@@ -7,7 +7,7 @@ replicaCount: 2
 image:
   repository: rg.fr-par.scw.cloud/crn-shared-prd-scr-lz-fr-par/tgc-streetcrocketcom-app
   tag: latest
-  pullSecret: acr-pull
+  pullSecret: scr-pull
 
 service:
   port: 80
