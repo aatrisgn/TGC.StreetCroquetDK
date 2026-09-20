@@ -1,5 +1,5 @@
 # Use the official Nginx image from Docker Hub
-FROM nginx:latest
+FROM nginxinc/nginx-unprivileged:stable
 
 # Copy your static HTML files into the container
 COPY ./html /usr/share/nginx/html
